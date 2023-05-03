@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="nombreUsuario" type="id" />
+    <item name="nombreUsuarioRegistrado" type="id" />
+    <item name="correoUsuario" type="id" />
+    <item name="correoUsuarioRegistrado" type="id" />
+    <item name="numerooUsuario" type="id" />
+    <item name="imageView" type="id" />
+    <item name="dinero" type="id" />
+    <item name="imageButton" type="id" />
+    <item name="imageButton2" type="id" />
+    <item name="imageButton3" type="id" />
+    <item name="textView" type="id" />
+    <item name="textView2" type="id" />
+    <item name="textView3" type="id" />
+    <item name="textView4" type="id" />
+    <item name="nombreUsuarioTransferencia" type="id" />
+    <item name="apellidoUsuarioTransferencia" type="id" />
+    <item name="apellidoUsuarioRegistrado" type="id" />
+    <item name="documentoUsuarioTransferencia" type="id" />
+    <item name="documentoUsuarioRegistrado" type="id" />
+    <item name="spinner" type="id" />
+    <item name="textView5" type="id" />
+</resources>

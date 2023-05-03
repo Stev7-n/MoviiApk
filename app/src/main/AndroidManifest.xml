@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.moviiapk">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/moviicono"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/moviicono"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MoviiApk"
+        tools:targetApi="31">
+        <activity
+            android:name=".transferencias"
+            android:theme="@style/Theme.MoviiApk"
+            android:label="Transferencias"
+            android:screenOrientation="locked"
+            android:exported="false" />
+        <activity
+            android:name=".registro"
+            android:theme="@style/Theme.MoviiApkNo"
+            android:screenOrientation="locked"
+            android:exported="false" />
+        <activity
+            android:name=".inicioDeSesion"
+            android:theme="@style/Theme.MoviiApkNo"
+            android:screenOrientation="locked"
+            android:exported="false" />
+        <activity
+            android:name=".login"
+            android:theme="@style/Theme.MoviiApkNo"
+            android:screenOrientation="locked"
+            android:exported="false" />
+        <activity
+            android:name=".animacionInicial"
+            android:theme="@style/Theme.MoviiApkNo"
+            android:exported="true"
+            android:screenOrientation="locked">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.MoviiApkNo"
+            android:exported="true"
+            android:screenOrientation="locked" />
+    </application>
+
+</manifest>
