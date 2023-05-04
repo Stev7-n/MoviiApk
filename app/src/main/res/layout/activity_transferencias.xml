@@ -45,7 +45,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.1" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -69,15 +69,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15">
+        app:layout_constraintVertical_bias="0.25">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nombreUsuarioRegistrado"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:textColor="#DD2565"
             android:inputType="textPersonName"
+            android:textColor="#DD2565"
             android:textSize="16sp"
             app:cornerRadius="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -103,7 +103,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.30">
+        app:layout_constraintVertical_bias="0.40">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/apellidoUsuarioRegistrado"
@@ -137,7 +137,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6">
+        app:layout_constraintVertical_bias="0.7">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/documentoUsuarioRegistrado"
@@ -158,8 +158,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.45"
-        app:layout_constraintHorizontal_bias="1.5"
+        app:layout_constraintVertical_bias="0.57"
+        app:layout_constraintHorizontal_bias="0.5"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -173,7 +173,7 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.42" />
+        app:layout_constraintVertical_bias="0.52" />
 
     <Button
         android:id="@+id/registrarSesion"
@@ -190,11 +190,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintVertical_bias="0.95"
         app:layout_constraintHorizontal_bias="0.5"
         app:strokeColor="#fff"
         tools:ignore="TextContrastCheck" />
-
 
 
 

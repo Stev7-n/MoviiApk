@@ -3,8 +3,10 @@ package com.example.moviiapk;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toolbar;
 
 public class transferencias extends AppCompatActivity {
 

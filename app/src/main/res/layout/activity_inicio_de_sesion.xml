@@ -118,7 +118,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:layout_constraintVertical_bias="0.50"
-        app:srcCompat="@drawable/tarjeta"
+        app:srcCompat="@drawable/tarjetadebito"
         tools:ignore="SpeakableTextPresentCheck"
         app:tint="#DD2565"
         />
