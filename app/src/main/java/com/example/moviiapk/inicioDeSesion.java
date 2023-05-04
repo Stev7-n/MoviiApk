@@ -30,5 +30,25 @@ public class inicioDeSesion extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageButton imageButton2 = findViewById(R.id.imageButton2);
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), historial.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton imageButton3 = findViewById(R.id.imageButton3);
+        imageButton3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), tarjetaVirtual.class);
+                startActivity(intent);
+            }
+        });
     }
 }
