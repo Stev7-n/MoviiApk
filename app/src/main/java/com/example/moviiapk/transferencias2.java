@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class transferencias2 extends AppCompatActivity {
 
@@ -37,11 +38,18 @@ public class transferencias2 extends AppCompatActivity {
         String confirmarT = numeroConfirmarUsuarioTransferencia.getText().toString();
         String cantidadT = cantidadUsuarioTransferencia.getText().toString();
 
+        SimpleDateFormat dia = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat tiempo = new SimpleDateFormat("HH:mm:ss");
+        String fecha = dia.format(new Date());
+        String hora = tiempo.format(new Date());
+
         ContentValues registrar = new ContentValues();
 
         registrar.put("numeroTransferencia", numeroT);
         registrar.put("confirmarTransferencia", confirmarT);
         registrar.put("cantidadTransferencia", cantidadT);
+        registrar.put("fecha", fecha);
+        registrar.put("hora", hora);
 
         long resultado = bd.insert("transferencias", null, registrar);
         bd.close();
