@@ -21,4 +21,5 @@
     <item name="documentoUsuarioRegistrado" type="id" />
     <item name="spinner" type="id" />
     <item name="textView5" type="id" />
+    <item name="actvity_historial" type="id" />
 </resources>
