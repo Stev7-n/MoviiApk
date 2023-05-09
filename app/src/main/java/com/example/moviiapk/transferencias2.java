@@ -2,8 +2,10 @@ package com.example.moviiapk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,7 @@ import java.util.Date;
 
 public class transferencias2 extends AppCompatActivity {
 
+    public static String nuevoDinero;
     TextInputEditText numeroUsuarioTransferencia;
     TextInputEditText numeroConfirmarUsuarioTransferencia;
     TextInputEditText cantidadUsuarioTransferencia;
@@ -30,6 +33,7 @@ public class transferencias2 extends AppCompatActivity {
         cantidadUsuarioTransferencia = findViewById(R.id.cantidadDineroT);
     }
 
+    @SuppressLint("Range")
     public void registrarTransferencia (View v) {
         BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
         SQLiteDatabase bd = admin.getWritableDatabase();
@@ -43,6 +47,22 @@ public class transferencias2 extends AppCompatActivity {
         String fecha = dia.format(new Date());
         String hora = tiempo.format(new Date());
 
+        Cursor cursor = bd.rawQuery("SELECT CantDinero FROM usuario WHERE numeroUsuario = ?", new String[]{confirmarT});
+        int dineroActual = 0;
+        if (cursor.moveToFirst()) {
+            dineroActual = cursor.getInt(cursor.getColumnIndex("CantDinero"));
+        }
+        cursor.close();
+
+        int cantidadTransferida = Integer.parseInt(cantidadT);
+        int nuevoDinero = dineroActual - cantidadTransferida;
+        transferencias2.nuevoDinero = Integer.toString(nuevoDinero);
+
+
+        ContentValues actualizar = new ContentValues();
+        actualizar.put("CantDinero", nuevoDinero);
+        bd.update("usuario", actualizar, "numeroUsuario = ?", new String[]{confirmarT});
+
         ContentValues registrar = new ContentValues();
 
         registrar.put("numeroTransferencia", numeroT);
@@ -50,6 +70,7 @@ public class transferencias2 extends AppCompatActivity {
         registrar.put("cantidadTransferencia", cantidadT);
         registrar.put("fecha", fecha);
         registrar.put("hora", hora);
+
 
         long resultado = bd.insert("transferencias", null, registrar);
         bd.close();
@@ -65,5 +86,6 @@ public class transferencias2 extends AppCompatActivity {
             finish();
 
         }
+
     }
 }
