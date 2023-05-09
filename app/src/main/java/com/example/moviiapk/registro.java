@@ -15,6 +15,7 @@ import java.util.Random;
 
 public class registro extends AppCompatActivity {
 
+    public static String CantDinero = "1000000";
     TextInputEditText nombreUsuario;
     TextInputEditText correoUsuario;
     TextInputEditText numeroUsuario;
@@ -34,7 +35,6 @@ public class registro extends AppCompatActivity {
     }
 
     public void registrarUsuario(View v) {
-        String CantDinero = "1000000";
         BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
         SQLiteDatabase bd = admin.getWritableDatabase();
 

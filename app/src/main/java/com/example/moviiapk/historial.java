@@ -32,10 +32,6 @@ public class historial extends AppCompatActivity {
             String fecha = cursor.getString(3);
             String hora = cursor.getString(4);
 
-            TextView espacio = new TextView(this);
-            espacio.setText("------------------------");
-            linearLayout.addView(espacio);
-
             TextView numeroTransferido = new TextView(this);
             numeroTransferido.setText("Número de la cuenta: " + numeroTransferencia);
             linearLayout.addView(numeroTransferido);

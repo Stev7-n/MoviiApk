@@ -18,9 +18,7 @@ public class inicioDeSesion extends AppCompatActivity {
         setContentView(R.layout.activity_inicio_de_sesion);
 
         dinero=findViewById(R.id.dinero);
-
-        int x = 1000000;
-        dinero.setText("Su dinero es "+ x);
+        dinero.setText("Su dinero es "+ registro.CantDinero);
 
         ImageButton imageButton = findViewById(R.id.imageButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
