@@ -42,6 +42,11 @@ public class transferencias2 extends AppCompatActivity {
         String confirmarT = numeroConfirmarUsuarioTransferencia.getText().toString();
         String cantidadT = cantidadUsuarioTransferencia.getText().toString();
 
+        if (numeroT.isEmpty() || confirmarT.isEmpty() || cantidadT.isEmpty()) {
+            Toast.makeText(this, "Por favor, llene todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         SimpleDateFormat dia = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat tiempo = new SimpleDateFormat("HH:mm:ss");
         String fecha = dia.format(new Date());

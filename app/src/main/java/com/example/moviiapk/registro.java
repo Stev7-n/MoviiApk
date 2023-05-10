@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +45,17 @@ public class registro extends AppCompatActivity {
         String correoU = correoUsuario.getText().toString();
         String nombreU = nombreUsuario.getText().toString();
         String dineroU = CantDinero.getBytes().toString();
+
+        if (numeroU.isEmpty() || passwoardU.isEmpty() || confirmarU.isEmpty() || correoU.isEmpty() || nombreU.isEmpty()) {
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Cursor fila = bd.rawQuery("select * from usuario where numeroUsuario='" + numeroU + "'", null);
+        if (fila.moveToFirst()) {
+            Toast.makeText(this, "El número de usuario ya existe", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         ContentValues registrar = new ContentValues();
 

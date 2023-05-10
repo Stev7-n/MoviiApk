@@ -21,26 +21,33 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ingresaUL=findViewById(R.id.ingresaUsuario);
-        ingresaCL=findViewById(R.id.ingresaContraseña);
+        ingresaUL = findViewById(R.id.ingresaUsuario);
+        ingresaCL = findViewById(R.id.ingresaContraseña);
     }
 
-    public void iniciarSesion (View v) {
-        BaseDeDatos admin = new BaseDeDatos(this, "admin", null,1);
+    public void iniciarSesion(View v) {
+        BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
         SQLiteDatabase bd = admin.getWritableDatabase();
         String ingresaUsuario = ingresaUL.getText().toString();
         String ingresaContraseña = ingresaCL.getText().toString();
-        Cursor fila = bd.rawQuery("select numeroUsuario, contraseñaUsuario from usuario where numeroUsuario='" + ingresaUsuario +
-                "' and contraseñaUsuario='" + ingresaContraseña + "'", null);
 
-        if (fila.moveToFirst()) {
-            Intent i = new Intent(this, inicioDeSesion.class);
-            startActivity(i);
-            finish();
-        } else
-            Toast.makeText(this, "Usuario y contraseña incorrectos",
+        if (ingresaUsuario.length() == 0 || ingresaContraseña.length() == 0) {
+            Toast.makeText(this, "Por favor, complete todos los campos",
                     Toast.LENGTH_SHORT).show();
-        bd.close();
-    }
+        } else {
+            Cursor fila = bd.rawQuery("select numeroUsuario, contraseñaUsuario from usuario where numeroUsuario='" + ingresaUsuario +
+                    "' and contraseñaUsuario='" + ingresaContraseña + "'", null);
 
+
+            if (fila.moveToFirst()) {
+                Intent i = new Intent(this, inicioDeSesion.class);
+                startActivity(i);
+                finish();
+            } else
+                Toast.makeText(this, "Usuario y contraseña incorrectos",
+                        Toast.LENGTH_SHORT).show();
+            bd.close();
+        }
+
+    }
 }
