@@ -20,7 +20,7 @@ public class inicioDeSesion extends AppCompatActivity {
         dinero=findViewById(R.id.dinero);
 
         int x = 1000000;
-        dinero.setText("Su dinero es "+ x);
+        dinero.setText("Su dinero es "+x);
 
         ImageButton imageButton = findViewById(R.id.imageButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -31,15 +31,15 @@ public class inicioDeSesion extends AppCompatActivity {
             }
         });
 
-        ImageButton imageButton2 = findViewById(R.id.imageButton2);
-        imageButton2.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), historial.class);
-                startActivity(intent);
-            }
-        });
+//        ImageButton imageButton2 = findViewById(R.id.imageButton2);
+//        imageButton2.setOnClickListener(new View.OnClickListener() {
+//
+////            @Override
+////            public void onClick(View view) {
+////                Intent intent = new Intent(getApplicationContext(), historial.class);
+////                startActivity(intent);
+////            }
+//        });
 
         ImageButton imageButton3 = findViewById(R.id.imageButton3);
         imageButton3.setOnClickListener(new View.OnClickListener() {
