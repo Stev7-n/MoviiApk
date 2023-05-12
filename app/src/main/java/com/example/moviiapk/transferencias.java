@@ -26,7 +26,9 @@ public class transferencias extends AppCompatActivity {
     }
 
     public void transferir (View v) {
+        String numeroUsuario = getIntent().getStringExtra("numeroUsuario");
         Intent intent = new Intent(this, transferencias2.class);
+        intent.putExtra("numeroUsuario", numeroUsuario);
         startActivity(intent);
     }
 }

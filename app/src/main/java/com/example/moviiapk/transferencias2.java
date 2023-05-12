@@ -27,6 +27,8 @@ public class transferencias2 extends AppCompatActivity {
         numeroUsuarioTransferencia = findViewById(R.id.numeroTransferencia);
         numeroConfirmarUsuarioTransferencia = findViewById(R.id.confirmarNumeroT);
         cantidadUsuarioTransferencia = findViewById(R.id.cantidadDineroT);
+
+        String numeroUsuario = getIntent().getStringExtra("numeroUsuario");
     }
 
     public void registrarTransferencia (View v) {
@@ -42,6 +44,7 @@ public class transferencias2 extends AppCompatActivity {
         registrar.put("numeroTransferencia", numeroT);
         registrar.put("confirmarTransferencia", confirmarT);
         registrar.put("cantidadTransferencia", cantidadT);
+        registrar.put("numeroUsuario", getIntent().getStringExtra("numeroUsuario"));
 
         long resultado = bd.insert("transferencias", null, registrar);
         bd.close();
@@ -55,7 +58,7 @@ public class transferencias2 extends AppCompatActivity {
             startActivity(i);
 
             finish();
-
         }
     }
+
 }

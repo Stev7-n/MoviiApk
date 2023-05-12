@@ -34,8 +34,9 @@ public class login extends AppCompatActivity {
                 "' and contraseñaUsuario='" + ingresaContraseña + "'", null);
 
         if (fila.moveToFirst()) {
-            Intent i = new Intent(this, inicioDeSesion.class);
-            startActivity(i);
+            Intent intent = new Intent(this, inicioDeSesion.class);
+            intent.putExtra("numeroUsuario", ingresaUsuario);
+            startActivity(intent);
             finish();
         } else
             Toast.makeText(this, "Usuario y contraseña incorrectos",

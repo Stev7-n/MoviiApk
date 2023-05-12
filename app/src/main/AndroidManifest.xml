@@ -19,6 +19,11 @@
             android:exported="false"
             android:theme="@style/Theme.MoviiApkNo" />
         <activity
+            android:name=".historial"
+            android:screenOrientation="locked"
+            android:exported="false"
+            android:theme="@style/Theme.MoviiApkNo" />
+        <activity
             android:name=".tarjetaVirtual"
             android:exported="false"
             android:screenOrientation="locked"
