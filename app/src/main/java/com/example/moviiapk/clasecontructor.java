@@ -14,6 +14,10 @@ public class clasecontructor {
         this.horatransfernecia = horatransfernecia;
     }
 
+    public clasecontructor() {
+
+    }
+
     public String getNumerotransferenia() {
         return numerotransferenia;
     }
