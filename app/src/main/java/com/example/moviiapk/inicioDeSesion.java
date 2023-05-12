@@ -10,18 +10,13 @@ import android.widget.TextView;
 
 public class inicioDeSesion extends AppCompatActivity {
 
-    TextView dinero;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_de_sesion);
 
-        dinero = findViewById(R.id.dinero);
-        String numeroUsuario = getIntent().getStringExtra("numeroUsuario");
 
-        int x = 1000000;
-        dinero.setText("Su dinero es " + x);
+        String numeroUsuario = getIntent().getStringExtra("numeroUsuario");
 
         ImageButton imageButton = findViewById(R.id.imageButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
