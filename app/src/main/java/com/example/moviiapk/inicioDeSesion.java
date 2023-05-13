@@ -17,6 +17,10 @@ public class inicioDeSesion extends AppCompatActivity {
 
 
         String numeroUsuario = getIntent().getStringExtra("numeroUsuario");
+        int cantDinero = getIntent().getIntExtra("cantDinero", 0);
+
+        TextView dinero = findViewById(R.id.dinero);
+        dinero.setText("Tu dinero es: " + cantDinero);
 
         ImageButton imageButton = findViewById(R.id.imageButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -24,6 +28,7 @@ public class inicioDeSesion extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), transferencias.class);
                 intent.putExtra("numeroUsuario", numeroUsuario);
+                intent.putExtra("cantDinero", cantDinero);
                 startActivity(intent);
             }
         });
@@ -35,6 +40,7 @@ public class inicioDeSesion extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), historial.class);
                 intent.putExtra("numeroUsuario", numeroUsuario);
+                intent.putExtra("cantDinero", cantDinero);
                 startActivity(intent);
             }
         });

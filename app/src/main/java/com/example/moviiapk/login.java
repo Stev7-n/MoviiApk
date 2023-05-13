@@ -30,12 +30,15 @@ public class login extends AppCompatActivity {
         SQLiteDatabase bd = admin.getWritableDatabase();
         String ingresaUsuario = ingresaUL.getText().toString();
         String ingresaContraseña = ingresaCL.getText().toString();
-        Cursor fila = bd.rawQuery("select numeroUsuario, contraseñaUsuario from usuario where numeroUsuario='" + ingresaUsuario +
+        Cursor fila = bd.rawQuery("select numeroUsuario, contraseñaUsuario, cantDinero from usuario where numeroUsuario='" + ingresaUsuario +
                 "' and contraseñaUsuario='" + ingresaContraseña + "'", null);
 
+
         if (fila.moveToFirst()) {
+            int cantDinero = fila.getInt(2);
             Intent intent = new Intent(this, inicioDeSesion.class);
             intent.putExtra("numeroUsuario", ingresaUsuario);
+            intent.putExtra("cantDinero", cantDinero);
             startActivity(intent);
             finish();
         } else

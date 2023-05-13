@@ -34,7 +34,7 @@ public class registro extends AppCompatActivity {
     }
 
     public void registrarUsuario(View v) {
-        String CantDinero = "1000000";
+        int cantDinero = Integer.parseInt("1000000");
         BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
         SQLiteDatabase bd = admin.getWritableDatabase();
 
@@ -43,7 +43,7 @@ public class registro extends AppCompatActivity {
         String confirmarU = confirmarUsuario.getText().toString();
         String correoU = correoUsuario.getText().toString();
         String nombreU = nombreUsuario.getText().toString();
-        String dineroU = CantDinero.getBytes().toString();
+        String dineroU = String.valueOf(cantDinero);
 
         ContentValues registrar = new ContentValues();
 
@@ -63,7 +63,9 @@ public class registro extends AppCompatActivity {
             Toast.makeText(this, "El registro ha sido exitoso", Toast.LENGTH_SHORT).show();
 
             Intent i = new Intent(this, login.class);
+            i.putExtra("cantDinero", cantDinero);
             startActivity(i);
+
 
             finish();
         }

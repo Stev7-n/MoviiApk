@@ -20,6 +20,8 @@ public class transferencias2 extends AppCompatActivity {
     TextInputEditText numeroConfirmarUsuarioTransferencia;
     TextInputEditText cantidadUsuarioTransferencia;
 
+    private int cantDinero;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,8 @@ public class transferencias2 extends AppCompatActivity {
         numeroUsuarioTransferencia = findViewById(R.id.numeroTransferencia);
         numeroConfirmarUsuarioTransferencia = findViewById(R.id.confirmarNumeroT);
         cantidadUsuarioTransferencia = findViewById(R.id.cantidadDineroT);
+
+        cantDinero = getIntent().getIntExtra("cantDinero", 0);
 
     }
 
@@ -64,6 +68,7 @@ public class transferencias2 extends AppCompatActivity {
 
             Intent intent = new Intent(this, inicioDeSesion.class);
             intent.putExtra("numeroUsuario", getIntent().getStringExtra("numeroUsuario"));
+            intent.putExtra("cantDinero", cantDinero);
             startActivity(intent);
 
             finish();
