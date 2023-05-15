@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Admin/Documents/MoviiApk/app/src/main/res/layout/activity_inicio_de_sesion.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/Admin/Documents/MoviiApk/app/src/main/res/layout/activity_login.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/Admin/Documents/MoviiApk/app/src/main/res/layout/activity_registro.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/Admin/Documents/MoviiApk/app/src/main/res/layout/etiqueta.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/Admin/Documents/MoviiApk/app/src/main/res/layout/historial.xml" value="0.21784420289855072" />
         <entry key="..\:/Users/WPOSS/AndroidStudioProjects/MoviiApk/app/src/main/res/drawable/bordes.xml" value="0.2065" />
         <entry key="..\:/Users/WPOSS/AndroidStudioProjects/MoviiApk/app/src/main/res/drawable/menu.xml" value="0.184" />
         <entry key="..\:/Users/WPOSS/AndroidStudioProjects/MoviiApk/app/src/main/res/drawable/spinner_background.xml" value="0.123" />
