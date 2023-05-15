@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -36,13 +37,52 @@ public class transferencias2 extends AppCompatActivity {
     }
 
     public void registrarTransferencia(View v) {
-        BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
-        SQLiteDatabase bd = admin.getWritableDatabase();
         String numeroUsuario = getIntent().getStringExtra("numeroUsuario");
-
         String numeroT = numeroUsuarioTransferencia.getText().toString();
         String confirmarT = numeroConfirmarUsuarioTransferencia.getText().toString();
         String cantidadT = cantidadUsuarioTransferencia.getText().toString();
+
+        //validar si el numero al que vamos a transferirle dinero esta en la base de datos, no sirve
+        if (!verificarNumeroTransferencia(numeroT)) {
+            Toast.makeText(this, "El número de transferencia no está registrado en la base de datos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //validacion para que los numeros de transferencia y confirmacion sean iguales
+        if (!numeroT.equals(confirmarT)) {
+            Toast.makeText(this, "Los números de transferencia no coinciden", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        int cantidadTransferencia = Integer.parseInt(cantidadT);
+        //validar la cantidad de dinero que tengo, para ver si puedo hacer la transferencia o no
+        if (cantDinero < cantidadTransferencia) {
+            Toast.makeText(this, "No tienes suficiente dinero para realizar esta transferencia", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+
+        ContentValues actualizarOrigen = new ContentValues();
+        actualizarOrigen.put("cantDinero", cantDinero - cantidadTransferencia);
+        int filasActualizadas = bd.update("usuario", actualizarOrigen,
+                "numeroUsuario=?", new String[]{numeroUsuario});
+        if (filasActualizadas != 1) {
+            Toast.makeText(this, "Error al actualizar la cuenta del usuario", Toast.LENGTH_SHORT).show();
+            bd.close();
+            return;
+        }
+
+        ContentValues actualizarDestino = new ContentValues();
+        actualizarDestino.put("cantDinero", getCantidadDinero(numeroT) + cantidadTransferencia);
+        filasActualizadas = bd.update("usuario", actualizarDestino,
+                "numeroUsuario=?", new String[]{numeroT});
+        if (filasActualizadas != 1) {
+            Toast.makeText(this, "Error al actualizar la cuenta del usuario destino", Toast.LENGTH_SHORT).show();
+            bd.close();
+            return;
+        }
+
+        cantDinero -= cantidadTransferencia;
 
         SimpleDateFormat dia = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat tiempo = new SimpleDateFormat("HH:mm:ss");
@@ -50,11 +90,10 @@ public class transferencias2 extends AppCompatActivity {
         String hora = tiempo.format(new Date());
 
         ContentValues registrar = new ContentValues();
-
         registrar.put("numeroTransferencia", numeroT);
         registrar.put("confirmarTransferencia", confirmarT);
         registrar.put("cantidadTransferencia", cantidadT);
-        registrar.put("numeroUsuario", getIntent().getStringExtra("numeroUsuario"));
+        registrar.put("numeroUsuario", numeroUsuario);
         registrar.put("fechaTransferencia", fecha);
         registrar.put("horaTransferencia", hora);
 
@@ -62,17 +101,52 @@ public class transferencias2 extends AppCompatActivity {
         bd.close();
 
         if (resultado == -1) {
-            Toast.makeText(this, "Error al hacer la transaccion", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error al hacer la transacción", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "La transaccion ha sido exitosa", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "La transacción ha sido exitosa", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(this, inicioDeSesion.class);
-            intent.putExtra("numeroUsuario", getIntent().getStringExtra("numeroUsuario"));
+            intent.putExtra("numeroUsuario", numeroUsuario);
             intent.putExtra("cantDinero", cantDinero);
             startActivity(intent);
 
             finish();
         }
+    }
+
+    private boolean verificarNumeroTransferencia(String numeroTransferencia) {
+        BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+
+        String[] campos = {"numeroUsuario"};
+        String[] argumentos = {numeroTransferencia};
+        Cursor fila = bd.query("usuario", campos, "numeroUsuario=?", argumentos, null, null, null);
+
+        boolean existe = fila.moveToFirst();
+
+        fila.close();
+        bd.close();
+
+        return existe;
+    }
+
+    private int getCantidadDinero(String numeroUsuario) {
+        BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+
+        String[] campos = {"cantDinero"};
+        String[] argumentos = {numeroUsuario};
+        Cursor fila = bd.query("usuario", campos, "numeroUsuario=?", argumentos, null, null, null);
+
+        int cantidadDinero = 0;
+        if (fila.moveToFirst()) {
+            cantidadDinero = fila.getInt(0);
+        }
+
+        fila.close();
+        bd.close();
+
+        return cantidadDinero;
     }
 
 }

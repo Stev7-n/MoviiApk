@@ -26,6 +26,8 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:paddingLeft="14dp"
+                app:tint="#DD2565"
+                android:background="@drawable/bordesrosa"
                 android:paddingRight="14dp"
                 app:srcCompat="@drawable/enviar"
                 android:layout_alignParentLeft="true"/>
@@ -44,6 +46,7 @@
 
                 <TextView
                     android:id="@+id/nameTextView"
+                    android:background="@drawable/bordesrosa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -74,6 +77,7 @@
                 android:layout_marginEnd="6dp"
                 android:layout_marginRight="6dp"
                 android:text="Cantidad"
+                android:background="@drawable/bordesrosa"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_alignParentRight="true"
