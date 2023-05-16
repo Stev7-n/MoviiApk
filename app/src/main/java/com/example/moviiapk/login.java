@@ -30,6 +30,12 @@ public class login extends AppCompatActivity {
         SQLiteDatabase bd = admin.getWritableDatabase();
         String ingresaUsuario = ingresaUL.getText().toString();
         String ingresaContraseña = ingresaCL.getText().toString();
+
+        if (ingresaUsuario.isEmpty() || ingresaContraseña.isEmpty()) {
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Cursor fila = bd.rawQuery("select numeroUsuario, contraseñaUsuario, cantDinero from usuario where numeroUsuario='" + ingresaUsuario +
                 "' and contraseñaUsuario='" + ingresaContraseña + "'", null);
 

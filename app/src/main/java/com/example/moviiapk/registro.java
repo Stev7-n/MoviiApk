@@ -47,6 +47,11 @@ public class registro extends AppCompatActivity {
         int binU = generarCodigo1();
         int codigoU = generarCodigo2();
 
+        if (numeroU.isEmpty() || passwoardU.isEmpty() || confirmarU.isEmpty() || correoU.isEmpty() || nombreU.isEmpty()) {
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         ContentValues registrar = new ContentValues();
 
         registrar.put("numeroUsuario", numeroU);
@@ -86,5 +91,5 @@ public class registro extends AppCompatActivity {
         int valor = random.nextInt(90) + 10;
         return valor;
     }
-    
+
 }
