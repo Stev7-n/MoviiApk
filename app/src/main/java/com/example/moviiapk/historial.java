@@ -20,6 +20,11 @@ public class historial extends AppCompatActivity {
 
     String numeroUsuario;
     List<clasecontructor> elementos;
+    List<claseConstructor2> transferenciasRecibidas;
+    ListAdapter listAdapter;
+    ListAdapter2 transferenciasRecibidasAdapter;
+    RecyclerView recyclerView;
+    RecyclerView recyclerViewTransferenciasRecibidas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,40 +36,68 @@ public class historial extends AppCompatActivity {
     }
 
     public void init() {
-
         elementos = new ArrayList<>();
+        transferenciasRecibidas = new ArrayList<>();
+
         consulta();
-        ListAdapter listAdapter = new ListAdapter(elementos, this);
-        RecyclerView recyclerView = findViewById(R.id.listRecyclerView);
+        obtenerTransferenciasEnviadas();
+
+        listAdapter = new ListAdapter(elementos, this);
+        transferenciasRecibidasAdapter = new ListAdapter2(transferenciasRecibidas, this);
+
+        recyclerView = findViewById(R.id.listRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(listAdapter);
+
+        recyclerViewTransferenciasRecibidas = findViewById(R.id.listRecyclerView2);
+        recyclerViewTransferenciasRecibidas.setHasFixedSize(true);
+        recyclerViewTransferenciasRecibidas.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewTransferenciasRecibidas.setAdapter(transferenciasRecibidasAdapter);
     }
 
+    private void consulta() {
+        BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
+        SQLiteDatabase db = admin.getWritableDatabase();
 
-        private void consulta() {
-
-            BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
-            SQLiteDatabase db = admin.getWritableDatabase();
-
-            try (Cursor fila = db.rawQuery("SELECT numeroTransferencia, cantidadTransferencia, fechaTransferencia, horaTransferencia FROM transferencias WHERE numeroUsuario = '" + numeroUsuario + "'", null);) {
-
-                if (!fila.moveToFirst()) {
-                    Toast.makeText(this, "No se encontraron transacciones para este usuario", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                do {
-                    clasecontructor usuario = new clasecontructor();
-                    usuario.setNumerotransferenia(fila.getString(0));
-                    usuario.setCantidadtransferencia(fila.getString(1));
-                    usuario.setFechatransferencia(fila.getString(2));
-                    usuario.setHoratransfernecia(fila.getString(3));
-                    elementos.add(usuario);
-
-                } while (fila.moveToNext());
-
+        try (Cursor cursor = db.rawQuery("SELECT numeroTransferencia, cantidadTransferencia, fechaTransferencia, horaTransferencia FROM transferencias WHERE numeroUsuario = '" + numeroUsuario + "'", null);) {
+            if (!cursor.moveToFirst()) {
+                Toast.makeText(this, "No se encontraron transacciones para este usuario", Toast.LENGTH_SHORT).show();
+                return;
             }
-            db.close();
+            do {
+                clasecontructor usuario = new clasecontructor();
+                usuario.setNumerotransferenia(cursor.getString(0));
+                usuario.setCantidadtransferencia(cursor.getString(1));
+                usuario.setFechatransferencia(cursor.getString(2));
+                usuario.setHoratransfernecia(cursor.getString(3));
+                elementos.add(usuario);
+            } while (cursor.moveToNext());
         }
+        db.close();
+    }
+
+    private void obtenerTransferenciasEnviadas() {
+        BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+
+        try (Cursor cursor = db.rawQuery("SELECT numeroTransferencia, cantidadTransferencia, fechaTransferencia, horaTransferencia FROM transferencias WHERE numeroTransferencia = '" + numeroUsuario + "'", null);) {
+            if (!cursor.moveToFirst()) {
+                Toast.makeText(this, "No se encontraron transferencias recibidas para este usuario", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            do {
+                claseConstructor2 transferenciaRecibida = new claseConstructor2();
+                transferenciaRecibida.setnumeroQEnvio(cursor.getString(0));
+                transferenciaRecibida.setcantidadQRecibio(cursor.getString(1));
+                transferenciaRecibida.setfechaQTrans(cursor.getString(2));
+                transferenciaRecibida.sethoraQTrans(cursor.getString(3));
+                transferenciasRecibidas.add(transferenciaRecibida);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+    }
+
 }
+
 
