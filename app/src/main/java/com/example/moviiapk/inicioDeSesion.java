@@ -51,6 +51,7 @@ public class inicioDeSesion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), tarjetaVirtual.class);
+                intent.putExtra("numeroUsuario", numeroUsuario);
                 startActivity(intent);
             }
         });

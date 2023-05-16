@@ -81,7 +81,7 @@ public class historial extends AppCompatActivity {
         BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
         SQLiteDatabase db = admin.getWritableDatabase();
 
-        try (Cursor cursor = db.rawQuery("SELECT numeroTransferencia, cantidadTransferencia, fechaTransferencia, horaTransferencia FROM transferencias WHERE numeroTransferencia = '" + numeroUsuario + "'", null);) {
+        try (Cursor cursor = db.rawQuery("SELECT numeroUsuario, cantidadTransferencia, fechaTransferencia, horaTransferencia FROM transferencias WHERE numeroTransferencia = '" + numeroUsuario + "'", null);) {
             if (!cursor.moveToFirst()) {
                 Toast.makeText(this, "No se encontraron transferencias recibidas para este usuario", Toast.LENGTH_SHORT).show();
                 return;

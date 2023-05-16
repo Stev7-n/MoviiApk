@@ -14,7 +14,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE usuario (nombreUsuario TEXT, correoUsuario TEXT," +
-                "numeroUsuario TEXT  primary key,  CantDinero TEXT, contraseñaUsuario TEXT, confirmarUsuario TEXT)");
+                "numeroUsuario TEXT  primary key,  CantDinero TEXT, contraseñaUsuario TEXT, confirmarUsuario TEXT, codigo4 TEXT, codigo10 TEXT)");
 
         db.execSQL("CREATE TABLE transferencias (id INTEGER PRIMARY KEY, numeroUsuario TEXT, numeroTransferencia TEXT, confirmarTransferencia TEXT, cantidadTransferencia TEXT, fechaTransferencia TEXT, horaTransferencia TEXT)");
     }

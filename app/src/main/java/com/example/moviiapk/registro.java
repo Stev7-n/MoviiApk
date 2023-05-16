@@ -44,6 +44,8 @@ public class registro extends AppCompatActivity {
         String correoU = correoUsuario.getText().toString();
         String nombreU = nombreUsuario.getText().toString();
         String dineroU = String.valueOf(cantDinero);
+        int binU = generarCodigo1();
+        int codigoU = generarCodigo2();
 
         ContentValues registrar = new ContentValues();
 
@@ -53,6 +55,8 @@ public class registro extends AppCompatActivity {
         registrar.put("correoUsuario", correoU);
         registrar.put("nombreUsuario", nombreU);
         registrar.put("CantDinero", dineroU);
+        registrar.put("codigo4", binU);
+        registrar.put("codigo10", codigoU);
 
         long resultado = bd.insert("usuario", null, registrar);
         bd.close();
@@ -62,12 +66,25 @@ public class registro extends AppCompatActivity {
         } else {
             Toast.makeText(this, "El registro ha sido exitoso", Toast.LENGTH_SHORT).show();
 
-            Intent i = new Intent(this, login.class);
-            i.putExtra("cantDinero", cantDinero);
-            startActivity(i);
+            Intent intent = new Intent(this, login.class);
+            intent.putExtra("cantDinero", cantDinero);
+            startActivity(intent);
 
 
             finish();
         }
     }
+
+    private int generarCodigo1() {
+        Random random = new Random();
+        int valor = random.nextInt(9000) + 1;
+        return valor;
+    }
+
+    private int generarCodigo2() {
+        Random random = new Random();
+        int valor = random.nextInt(90) + 10;
+        return valor;
+    }
+    
 }
