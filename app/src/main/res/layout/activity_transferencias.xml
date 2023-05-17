@@ -91,6 +91,7 @@
             android:inputType="textPersonName"
             android:textColor="#DD2565"
             android:textSize="16sp"
+            android:maxLength="15"
             app:cornerRadius="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,6 +126,7 @@
             android:textColor="#DD2565"
             android:inputType="textPersonName"
             android:textSize="16sp"
+            android:maxLength="15"
             app:cornerRadius="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -157,6 +159,7 @@
             android:layout_height="65dp"
             android:textColor="#DD2565"
             android:inputType="number"
+            android:maxLength="10"
             android:textSize="16sp"
             app:cornerRadius="20dp" />
     </com.google.android.material.textfield.TextInputLayout>

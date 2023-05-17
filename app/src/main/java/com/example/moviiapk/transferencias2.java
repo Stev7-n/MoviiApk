@@ -42,20 +42,34 @@ public class transferencias2 extends AppCompatActivity {
         String confirmarT = numeroConfirmarUsuarioTransferencia.getText().toString();
         String cantidadT = cantidadUsuarioTransferencia.getText().toString();
 
+        // validamos si el número de transferencia es igual al número del usuario actual y se cancela
+        if (numeroT.equals(numeroUsuario)) {
+            Toast.makeText(this, "No puedes transferir dinero a tu propia cuenta", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //validar si el numero al que vamos a transferirle dinero esta en la base de datos, no sirve
         if (!verificarNumeroTransferencia(numeroT)) {
             Toast.makeText(this, "El número de transferencia no está registrado en la base de datos", Toast.LENGTH_SHORT).show();
             return;
         }
+
         //validacion para que los numeros de transferencia y confirmacion sean iguales
         if (!numeroT.equals(confirmarT)) {
             Toast.makeText(this, "Los números de transferencia no coinciden", Toast.LENGTH_SHORT).show();
             return;
         }
+
         int cantidadTransferencia = Integer.parseInt(cantidadT);
         //validar la cantidad de dinero que tengo, para ver si puedo hacer la transferencia o no
         if (cantDinero < cantidadTransferencia) {
             Toast.makeText(this, "No tienes suficiente dinero para realizar esta transferencia", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //agregamos una condicion de queel monto minimo sea de 5mil
+        if (cantidadTransferencia < 5000) {
+            Toast.makeText(this, "La cantidad mínima de transferencias debe ser de 5000", Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -50,14 +50,14 @@
         android:layout_width="350dp"
         android:layout_height="20dp"
         android:text="Historial de transferencias Enviadas"
-        android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textSize="18sp"
+        android:textColor="#DD2565"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintVertical_bias="0.20"
         tools:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -81,8 +81,8 @@
         android:layout_width="350dp"
         android:layout_height="20dp"
         android:text="Historial de transferencias Recibidas"
-        android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textColor="#DD2565"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.458"
