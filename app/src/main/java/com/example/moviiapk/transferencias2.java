@@ -67,7 +67,7 @@ public class transferencias2 extends AppCompatActivity {
             return;
         }
 
-        //agregamos una condicion de queel monto minimo sea de 5mil
+        //agregamos una condicion de que el monto minimo sea de 5mil
         if (cantidadTransferencia < 5000) {
             Toast.makeText(this, "La cantidad mínima de transferencias debe ser de 5000", Toast.LENGTH_SHORT).show();
             return;

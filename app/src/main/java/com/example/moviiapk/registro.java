@@ -47,8 +47,21 @@ public class registro extends AppCompatActivity {
         int binU = generarCodigo1();
         int codigoU = generarCodigo2();
 
+        //validar que los campos no esten vacios
         if (numeroU.isEmpty() || passwoardU.isEmpty() || confirmarU.isEmpty() || correoU.isEmpty() || nombreU.isEmpty()) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // validar si las contraseñas coinciden
+        if (!passwoardU.equals(confirmarU)) {
+            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // validar si el número tiene 10 dígitos
+        if (numeroU.length() != 10) {
+            Toast.makeText(this, "El número debe contener 10 dígitos", Toast.LENGTH_SHORT).show();
             return;
         }
 
