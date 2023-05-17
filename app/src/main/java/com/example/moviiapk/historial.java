@@ -1,12 +1,7 @@
 package com.example.moviiapk;
-
-import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,12 +14,8 @@ import java.util.List;
 public class historial extends AppCompatActivity {
 
     String numeroUsuario;
-    List<clasecontructor> elementos;
-    List<claseConstructor2> transferenciasRecibidas;
-    ListAdapter listAdapter;
-    ListAdapter2 transferenciasRecibidasAdapter;
+    ListAdapter adapter;
     RecyclerView recyclerView;
-    RecyclerView recyclerViewTransferenciasRecibidas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,68 +27,47 @@ public class historial extends AppCompatActivity {
     }
 
     public void init() {
-        elementos = new ArrayList<>();
-        transferenciasRecibidas = new ArrayList<>();
-
-        consulta();
-        obtenerTransferenciasEnviadas();
-
-        listAdapter = new ListAdapter(elementos, this);
-        transferenciasRecibidasAdapter = new ListAdapter2(transferenciasRecibidas, this);
-
+        adapter = new ListAdapter(this);
         recyclerView = findViewById(R.id.listRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(listAdapter);
+        recyclerView.setAdapter(adapter);
 
-        recyclerViewTransferenciasRecibidas = findViewById(R.id.listRecyclerView2);
-        recyclerViewTransferenciasRecibidas.setHasFixedSize(true);
-        recyclerViewTransferenciasRecibidas.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewTransferenciasRecibidas.setAdapter(transferenciasRecibidasAdapter);
+        consulta();
     }
 
     private void consulta() {
         BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
         SQLiteDatabase db = admin.getWritableDatabase();
 
-        try (Cursor cursor = db.rawQuery("SELECT numeroTransferencia, cantidadTransferencia, fechaTransferencia, horaTransferencia FROM transferencias WHERE numeroUsuario = '" + numeroUsuario + "'", null);) {
+        try (Cursor cursor = db.rawQuery("SELECT numeroUsuario, numeroTransferencia, cantidadTransferencia, fechaTransferencia, horaTransferencia FROM transferencias WHERE numeroUsuario = '" + numeroUsuario + "' OR numeroTransferencia = '" + numeroUsuario + "'", null)) {
             if (!cursor.moveToFirst()) {
                 Toast.makeText(this, "No se encontraron transacciones para este usuario", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            List<Object> transferenciasRealizadasYRecibidas = new ArrayList<>();
+
             do {
-                clasecontructor usuario = new clasecontructor();
-                usuario.setNumerotransferenia(cursor.getString(0));
-                usuario.setCantidadtransferencia(cursor.getString(1));
-                usuario.setFechatransferencia(cursor.getString(2));
-                usuario.setHoratransfernecia(cursor.getString(3));
-                elementos.add(usuario);
+                if (cursor.getString(0).equals(numeroUsuario)) {
+                    clasecontructor usuario = new clasecontructor();
+                    usuario.setNumerotransferenia(cursor.getString(1));
+                    usuario.setCantidadtransferencia(cursor.getString(2));
+                    usuario.setFechatransferencia(cursor.getString(3));
+                    usuario.setHoratransfernecia(cursor.getString(4));
+                    transferenciasRealizadasYRecibidas.add(usuario);
+                } else {
+                    claseConstructor2 transferenciaRecibida = new claseConstructor2();
+                    transferenciaRecibida.setnumeroQEnvio(cursor.getString(0));
+                    transferenciaRecibida.setcantidadQRecibio(cursor.getString(2));
+                    transferenciaRecibida.setfechaQTrans(cursor.getString(3));
+                    transferenciaRecibida.sethoraQTrans(cursor.getString(4));
+                    transferenciasRealizadasYRecibidas.add(transferenciaRecibida);
+                }
             } while (cursor.moveToNext());
+
+            adapter.setItems(transferenciasRealizadasYRecibidas);
         }
         db.close();
     }
-
-    private void obtenerTransferenciasEnviadas() {
-        BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
-        SQLiteDatabase db = admin.getWritableDatabase();
-
-        try (Cursor cursor = db.rawQuery("SELECT numeroUsuario, cantidadTransferencia, fechaTransferencia, horaTransferencia FROM transferencias WHERE numeroTransferencia = '" + numeroUsuario + "'", null);) {
-            if (!cursor.moveToFirst()) {
-                Toast.makeText(this, "No se encontraron transferencias recibidas para este usuario", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            do {
-                claseConstructor2 transferenciaRecibida = new claseConstructor2();
-                transferenciaRecibida.setnumeroQEnvio(cursor.getString(0));
-                transferenciaRecibida.setcantidadQRecibio(cursor.getString(1));
-                transferenciaRecibida.setfechaQTrans(cursor.getString(2));
-                transferenciaRecibida.sethoraQTrans(cursor.getString(3));
-                transferenciasRecibidas.add(transferenciaRecibida);
-            } while (cursor.moveToNext());
-        }
-        db.close();
-    }
-
 }
-
-
