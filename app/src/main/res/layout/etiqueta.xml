@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardUseCompatPadding="true">
+<androidx.cardview.widget.CardView
     android:id="@+id/cv"
     android:layout_width="323dp"
     android:layout_height="106dp"
     android:animateLayoutChanges="true"
     app:cardCornerRadius="25dp"
     app:cardElevation="4dp"
-    app:cardUseCompatPadding="true">
+    android:layout_gravity="end"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1"
+    app:cardUseCompatPadding="true"
+    tools:ignore="MissingConstraints">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="end">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
             android:background="@drawable/borderojo">
+
             <ImageView
                 android:id="@+id/iconImageView"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:paddingLeft="14dp"
-                app:tint="#DD2565"
                 android:background="@drawable/bordesrosa"
+                android:paddingLeft="14dp"
                 android:paddingRight="14dp"
                 app:srcCompat="@drawable/enviar"
-                android:layout_alignParentLeft="true"/>
+                app:tint="#DD2565" />
             <LinearLayout
                 android:id="@+id/LinearLayout"
                 android:layout_width="wrap_content"
@@ -81,9 +94,11 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:gravity="end" />
 
 
         </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
