@@ -6,12 +6,21 @@ public class clasecontructor {
     private String cantidadtransferencia;
     private String fechatransferencia;
     private String horatransfernecia;
+    private boolean recivida;
 
     public clasecontructor(String numerotransferenia, String cantidadtransferencia, String fechatransferencia, String horatransfernecia) {
         this.numerotransferenia = numerotransferenia;
         this.cantidadtransferencia = cantidadtransferencia;
         this.fechatransferencia = fechatransferencia;
         this.horatransfernecia = horatransfernecia;
+    }
+
+    public clasecontructor(String numerotransferenia, String cantidadtransferencia, String fechatransferencia, String horatransfernecia, boolean recivida) {
+        this.numerotransferenia = numerotransferenia;
+        this.cantidadtransferencia = cantidadtransferencia;
+        this.fechatransferencia = fechatransferencia;
+        this.horatransfernecia = horatransfernecia;
+        this.recivida = recivida;
     }
 
     public clasecontructor() {
@@ -48,5 +57,12 @@ public class clasecontructor {
 
     public void setHoratransfernecia(String horatransfernecia) {
         this.horatransfernecia = horatransfernecia;
+    }
+
+    public void setRecivida(boolean b) {
+    }
+
+    public boolean isRecivida(boolean b) {
+        return false;
     }
 }
