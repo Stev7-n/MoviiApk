@@ -8,15 +8,21 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 public class transferencias extends AppCompatActivity {
 
     private int cantDinero;
     private String numeroUsuario;
+
+    EditText nombreUsuarioTR;
+    EditText apellidoUsuarioRegistrado;
+    EditText documentoUsuarioRegistrado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +39,22 @@ public class transferencias extends AppCompatActivity {
     }
 
     public void transferir (View v) {
-        Intent intent = new Intent(this, transferencias2.class);
-        intent.putExtra("cantDinero", cantDinero);
-        intent.putExtra("numeroUsuario", numeroUsuario);
-        startActivity(intent);
+
+        EditText nombreUsuarioTR = findViewById(R.id.nombreUsuarioTR);
+        EditText apellidoUsuarioRegistrado = findViewById(R.id.apellidoUsuarioRegistrado);
+        EditText documentoUsuarioRegistrado = findViewById(R.id.documentoUsuarioRegistrado);
+
+        if (nombreUsuarioTR.getText().toString().trim().equals("") ||
+                apellidoUsuarioRegistrado.getText().toString().trim().equals("") ||
+                documentoUsuarioRegistrado.getText().toString().trim().equals("")) {
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Intent intent = new Intent(this, transferencias2.class);
+            intent.putExtra("cantDinero", cantDinero);
+            intent.putExtra("numeroUsuario", numeroUsuario);
+            startActivity(intent);
+            finish();
+        }
     }
 }

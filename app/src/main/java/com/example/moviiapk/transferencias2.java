@@ -109,7 +109,6 @@ public class transferencias2 extends AppCompatActivity {
             intent.putExtra("numeroUsuario", numeroUsuario);
             intent.putExtra("cantDinero", cantDinero);
             startActivity(intent);
-
             finish();
         }
     }

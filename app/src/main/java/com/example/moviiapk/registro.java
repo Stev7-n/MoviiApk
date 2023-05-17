@@ -74,8 +74,6 @@ public class registro extends AppCompatActivity {
             Intent intent = new Intent(this, login.class);
             intent.putExtra("cantDinero", cantDinero);
             startActivity(intent);
-
-
             finish();
         }
     }
