@@ -65,6 +65,8 @@ public class inicioDeSesion extends AppCompatActivity {
         builder.setMessage("¿Deseas salir al menu principal?")
                 .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(inicioDeSesion.this,MainActivity.class);
+                        startActivity(intent);
                         finish();
                     }
                 })

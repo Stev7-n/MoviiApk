@@ -104,5 +104,10 @@ public class tarjetaVirtual extends AppCompatActivity {
         db.close();
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
 
 }

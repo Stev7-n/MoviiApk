@@ -70,4 +70,8 @@ public class historial extends AppCompatActivity {
         }
         db.close();
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

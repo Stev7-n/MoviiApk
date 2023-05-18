@@ -76,6 +76,7 @@ public class transferencias2 extends AppCompatActivity {
         BaseDeDatos admin = new BaseDeDatos(this, "admin", null, 1);
         SQLiteDatabase bd = admin.getWritableDatabase();
 
+        //cuando se hace una transferencia osea se descuenta
         ContentValues actualizarOrigen = new ContentValues();
         actualizarOrigen.put("cantDinero", cantDinero - cantidadTransferencia);
         int filasActualizadas = bd.update("usuario", actualizarOrigen,
@@ -86,6 +87,7 @@ public class transferencias2 extends AppCompatActivity {
             return;
         }
 
+        //cuando me llega una transferencia osea se suma
         ContentValues actualizarDestino = new ContentValues();
         actualizarDestino.put("cantDinero", getCantidadDinero(numeroT) + cantidadTransferencia);
         filasActualizadas = bd.update("usuario", actualizarDestino,
@@ -95,6 +97,7 @@ public class transferencias2 extends AppCompatActivity {
             bd.close();
             return;
         }
+
 
         cantDinero -= cantidadTransferencia;
 
@@ -162,4 +165,8 @@ public class transferencias2 extends AppCompatActivity {
         return cantidadDinero;
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

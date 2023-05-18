@@ -19,11 +19,13 @@ public class MainActivity extends AppCompatActivity {
     public void iniciar (View v) {
         Intent intent = new Intent(this, login.class);
         startActivity(intent);
+        finish();
     }
 
     public void registrar (View v) {
         Intent intent = new Intent(this, registro.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage("¿Deseas salir de la aplicación?")
                 .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        finish();
+                        finishAffinity();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -43,5 +45,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+
 
 }
