@@ -61,6 +61,7 @@ public class transferencias2 extends AppCompatActivity {
         }
 
         int cantidadTransferencia = Integer.parseInt(cantidadT);
+
         //validar la cantidad de dinero que tengo, para ver si puedo hacer la transferencia o no
         if (cantDinero < cantidadTransferencia) {
             Toast.makeText(this, "No tienes suficiente dinero para realizar esta transferencia", Toast.LENGTH_SHORT).show();
